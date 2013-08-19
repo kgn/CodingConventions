@@ -334,7 +334,9 @@ Helper class methods are preferred for creating custom object.
 
 ## Literals
 
-`NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
+`NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. 
+Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
+The prefered method of dealing with this potential is `@{@"data": object ?: [NSNull null]}`.
 
 **For example:**
 
