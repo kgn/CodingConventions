@@ -104,6 +104,7 @@ Comments should be used to explain **why** a particular piece of code does somet
 Any comments that are used must be kept up-to-date or deleted.
 
 There should always be a space after the `//`.
+
 **For example:**
 ```objc
 // This is where we do the thing
