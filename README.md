@@ -332,3 +332,32 @@ typedef NS_ENUM(NSInteger, SMEPhotoType){
     SMEPhotoTypeWhere
 };
 ```
+
+## Private Properties
+
+Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class. 
+Named categories (such as `SMEPrivate` or `private`) should never be used unless extending another class.
+
+**For example:**
+
+```objc
+@interface SMEPhoto()
+
+@property (strong, nonatomic) SMEUser *user;
+@property (nonatomic) SMEPhotoType photoType;
+@property (nonatomic) NSInteger guessCount;
+
+@end
+```
+
+## Image Naming
+
+Image names should be named consistently to preserve organization and developer sanity. 
+They should be named as one pascal-case string with a description of their purpose, 
+followed by the un-prefixed name of the class or property they are customizing (if there is one), 
+followed by a further description of color and/or placement, and finally their state.
+
+**For example:**
+
+* `RefreshBarButtonItem` / `RefreshBarButtonItem@2x` and `RefreshBarButtonItemSelected` / `RefreshBarButtonItemSelected@2x`
+* `ArticleNavigationBarWhite` / `ArticleNavigationBarWhite@2x` and `ArticleNavigationBarBlackSelected` / `ArticleNavigationBarBlackSelected@2x`.
