@@ -361,3 +361,94 @@ followed by a further description of color and/or placement, and finally their s
 
 * `RefreshBarButtonItem` / `RefreshBarButtonItem@2x` and `RefreshBarButtonItemSelected` / `RefreshBarButtonItemSelected@2x`
 * `ArticleNavigationBarWhite` / `ArticleNavigationBarWhite@2x` and `ArticleNavigationBarBlackSelected` / `ArticleNavigationBarBlackSelected@2x`.
+
+## Booleans
+
+Since `nil` resolves to `NO` it is unnecessary to compare it in conditions. Never compare something directly to `YES`, because `YES` is defined to 1 and a `BOOL` can be up to 8 bits.
+
+This allows for more consistency across files and greater visual clarity.
+
+**For example:**
+
+```objc
+if(!someObject){
+}
+```
+
+**Not:**
+
+```objc
+if(someObject == nil){
+}
+```
+
+-----
+
+**For a `BOOL`, here are two examples:**
+
+```objc
+if(isAwesome)
+if(![someObject boolValue])
+```
+
+**Not:**
+
+```objc
+if([someObject boolValue] == NO)
+if(isAwesome == YES) // Never do this.
+```
+
+-----
+
+Deriving truth value directly from an arithmetic operation is never a good idea. 
+Instead, use the result of the == operator, or cast values into booleans with the ! (or !!) operator.
+
+**For example:**
+
+```objc
+NSInteger age = 12;
+if(!!age){
+    // age is not 0
+}
+```
+
+or
+
+```objc
+NSInteger age = 12;
+if(age != 0){
+    // age is not 0
+}
+```
+
+From [NSHipster BOOL](http://nshipster.com/bool) post.
+
+-----
+
+If the name of a `BOOL` property is expressed as an adjective, the property can omit the “is” prefix but specifies the conventional name for the get accessor, for example:
+
+```objc
+@property (getter=isEditable) BOOL editable;
+```
+Text and example taken from the [Cocoa Naming Guidelines](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html#//apple_ref/doc/uid/20001284-BAJGIIJE).
+
+## Singletons
+
+Singleton objects should use a thread-safe pattern for creating their shared instance.
+
+```objc
++ (instancetype)sharedInstance{
+   static id sharedInstance = nil;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+      sharedInstance = [[self alloc] init];
+   });
+   return sharedInstance;
+}
+```
+
+This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
+
+# References
+
+Many of the Objective-C guides are from the [New York Times: Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide), much of the text is stright up copied because they did such a great job with it!
