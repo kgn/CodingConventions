@@ -2,7 +2,7 @@ Main items like repo names, folders, and classes are in [PascalCase](http://c2.c
 
 Lesser items like class properties and variables are in [camelCase](http://msdn.microsoft.com/en-us/library/x2dbyw72.aspx).
 
-The Sesame namespace is `SME`, used for all Cocoa, Pytnon, and JavaScript/CoffeeScript global objects.
+The Sesame namespace is `SME`, used for all Cocoa, Python, and JavaScript/CoffeeScript global objects.
 
 Indent using 4 spaces. Never indent with tabs.
 
@@ -16,13 +16,13 @@ Examples `SesameCocoa`, `SesameWebsite`.
 
 ## Branches
 
-Git branches are grouped together by the `/` seperator so they are organized into *directories* in GUI apps.
+Git branches are grouped together by the `/` separator so they are organized into *directories* in GUI apps.
 
 There are currently two groups:
 - `feature` - A feature branch. Examples: `feature/sound-control`, `feature/x-ray`
 - `build` - A build branch for the build system. Examples: `build/release`, `build/beta`.
 
-# C Based Syntex Languages
+# C Based Syntax Languages
 
 Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
 There should be no space around the braces to make the code more compact.
@@ -238,7 +238,7 @@ directly after the `@synthesize` and `@dynamic` statements.
 }
 ```
 
-Helper class methods are prefered for creating custom object.
+Helper class methods are preferred for creating custom object.
 
 **For example:**
 
@@ -272,7 +272,7 @@ NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 
 ### Make
 
-Creating a `CGRect` often results in a very long line of code. For this reason it is prefered to manipulate a rectangle over multiple lines rather than on long `CGRectMake` line.
+Creating a `CGRect` often results in a very long line of code. For this reason it is preferred to manipulate a rectangle over multiple lines rather than on long `CGRectMake` line.
 
 **For example:**
 ```objc
@@ -355,8 +355,8 @@ typedef NS_ENUM(NSInteger, SMEPhotoType){
 
 ## Private Properties
 
-Private properties should be declared in class extensions (anonymous categories) in a seperate header file for the class: `SMEPhoto+Private.h`. 
-This way other classes in the API can use the private properties and methods but the interfce will be clean to the end user of the API.
+Private properties should be declared in class extensions (anonymous categories) in a separate header file for the class: `SMEPhoto+Private.h`. 
+This way other classes in the API can use the private properties and methods but the interface will be clean to the end user of the API.
 Named categories (such as `SMEPrivate` or `private`) should never be used unless extending another class.
 
 **For example:**
@@ -472,4 +472,4 @@ This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.
 
 # References
 
-Many of the Objective-C guides are from the [New York Times: Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide), much of the text is stright up copied because they did such a great job with it!
+Many of the Objective-C guides are from the [New York Times: Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide), much of the text is straight up copied because they did such a great job with it!
