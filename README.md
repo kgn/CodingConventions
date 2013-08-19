@@ -8,9 +8,9 @@ The Sesame namespace is `SME`, used for all Cocoa, Pytnon, and JavaScript/Coffee
 
 ## Repos
 
-Get repositories are Pascal Case and namespaced with *Sesame*.
+Get repositories are Pascal Case and namespaced with `Sesame`.
 
-Examples *SesameCocoa*, *SesameWebsite*.
+Examples `SesameCocoa`, `SesameWebsite`.
 
 ## Branches
 
