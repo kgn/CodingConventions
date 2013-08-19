@@ -192,7 +192,7 @@ Constants should be camel-case with all words capitalized and prefixed by the re
 **For example:**
 
 ```objc
-static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
+static const NSTimeInterval SMEPhotoViewControllerFadeAnimationDuration = 0.3;
 ```
 
 **Not:**
