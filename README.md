@@ -10,7 +10,7 @@ Indent using 4 spaces. Never indent with tabs.
 
 ## Repos
 
-Get repositories are Pascal Case and namespaced with `Sesame`.
+Get repositories are pascal-case and namespaced with `Sesame`.
 
 Examples `SesameCocoa`, `SesameWebsite`.
 
@@ -132,4 +132,48 @@ In method signatures, there should be a space after the scope (-/+ symbol). Ther
 **For Example**:
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
+```
+
+## Naming
+
+Apple naming conventions should be adhered to wherever possible, especially those related to [memory management rules](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html) ([NARC](http://stackoverflow.com/a/2865194/340508)).
+
+Long, descriptive method and variable names are good.
+
+**For example:**
+
+```objc
+UIButton *settingsButton;
+```
+
+**Not**
+
+```objc
+UIButton *setBut;
+```
+
+A three letter prefix (e.g. `SME`) should always be used for class names and constants. 
+Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity.
+
+**For example:**
+
+```objc
+static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
+```
+
+**Not:**
+
+```objc
+static const NSTimeInterval fadetime = 1.7;
+```
+
+Properties should be camel-case with the leading word being lowercase. 
+**If Xcode can automatically synthesize the variable, then let it.** 
+Otherwise, in order to be consistent, the backing instance variables for these properties should be camel-case with the leading word being lowercase and a leading underscore. 
+This is the same format as Xcode's default synthesis.
+
+**For example:**
+
+```objc
+@synthesize descriptiveVariableName = _descriptiveVariableName;
 ```
