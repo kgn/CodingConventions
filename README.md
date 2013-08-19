@@ -355,7 +355,8 @@ typedef NS_ENUM(NSInteger, SMEPhotoType){
 
 ## Private Properties
 
-Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class. 
+Private properties should be declared in class extensions (anonymous categories) in a seperate header file for the class: `SMEPhoto+Private.h`. 
+This way other classes in the API can use the private properties and methods but the interfce will be clean to the end user of the API.
 Named categories (such as `SMEPrivate` or `private`) should never be used unless extending another class.
 
 **For example:**
