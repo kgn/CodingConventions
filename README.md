@@ -4,7 +4,9 @@ Lesser items like class properties and variables are in [camelCase](http://msdn.
 
 The Sesame namespace is `SME`, used for all Cocoa, Python, and JavaScript/CoffeeScript global objects.
 
-Indent using 4 spaces. Never indent with tabs.
+**If you read nothing else read this:**
+
+> It's very easy in code to be overly clever, don't be. Make the code readable and understandable by others and your future self. This includes things like separating complex code into multiple lines with comments, and clear variable names, even if they get really long. Take 5 extra seconds now when writing the code to avoid loosing 5 minutes later when reading it.
 
 # Git
 
@@ -23,6 +25,30 @@ There are currently two groups:
 - `build` - A build branch for the build system. Examples: `build/release`, `build/beta`.
 
 # C Based Syntax Languages
+
+## Spacing
+
+* 4 spaces, not tabs.
+* Files should always end with a new line.
+* No more than three newlines should be used to divide code, any more is just silly. There are better ways to do so like comments and pragma marks.
+* Additional space should not be added between variable type, names, and value to make them line up. If you like you came order the lines from shortest to longest.
+* Code should be concise and compact. Avoid adding spaces between brackets, parentheses, and braces.
+
+**For example:**
+```objc
+int x = 10;
+int width = 300;
+```
+
+**Not:**
+```objc
+int     x  =   10;
+int width  =  300;
+```
+
+
+
+## Braces
 
 Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
 There should be no space around the braces to make the code more compact.
@@ -110,6 +136,12 @@ The `// HACK:` comment should be used to flag a particually hacky peice of code 
 
 # Objective-C
 
+## Types
+
+`NSInteger` and `NSUInteger` should be used instead of `int`, `long`, etc per Apple's best practices and 64-bit safety. `CGFloat` is preferred over `float` for the same reasons. This future proofs code for 64-bit platforms.
+
+All Apple types should be used over primitive ones. For example, if you are working with time intervals, use `NSTimeInterval` instead of `double` even though it is synonymous. This is considered best practice and makes for clearer code.
+
 ## Dot Notation
 
 Avoid mixing square brackets and dots.
@@ -159,6 +191,19 @@ Property definitions should be used in place of naked instance variables wheneve
 }
 ```
 
+## Properties
+
+```objective-c
+@property (strong, nonatomic) UIColor *topColor;
+@property (nonatomic) CGSize shadowOffset;
+@property (weak, nonatomic, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, getter=isLoading) BOOL loading;
+```
+
+If the property is `strong` or `weak`, it should be first. The next option should `nonatomic` if it is specified. `readonly` should be the next option if it is specified. `readwrite` should never be specified in header file. `readwrite` should only be used in class extensions. `getter` or `setter` should be last. `setter` should rarely be used.
+
+Any object that is inherently owned by another object should be defined as `weak`. Delegates and views are examples of these types of objects. Views should be defined as `weak` because they are retained by their super view.
+
 ## Methods
 
 In method signatures, there should be a space after the scope (-/+ symbol). There should be a space between the method segments.
@@ -166,6 +211,25 @@ In method signatures, there should be a space after the scope (-/+ symbol). Ther
 **For Example**:
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
+```
+
+## Pragma Mark and Implementation Organization
+
+Pragma marks should be used to better organize code. They should be used to group section of code into logical chunks.
+
+Pragma marks should **always** be used to denote delegate methods.
+
+**For example:**
+
+```objc
+#pragma mark - UITableViewDelegate
+
+// table view delegate methods
+
+#pragma mark - UITableViewDataSource
+
+// table view data source methods
+
 ```
 
 ## Naming
@@ -218,6 +282,29 @@ When using properties, instance variables should always be accessed and mutated 
 This means that all properties will be visually distinct, as they will all be prefaced with `self.`. 
 Local variables should not contain underscores.
 
+## Import
+
+**Always** use `@class` whenever possible in header files instead of `#import` since it has a slight compile time performance boost.
+
+From the [Objective-C Programming Guide](http://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjectiveC/ObjC.pdf) (Page 38):
+
+> The @class directive minimizes the amount of code seen by the compiler and linker, and is therefore the simplest way to give a forward declaration of a class name. Being simple, it avoids potential problems that may come with importing files that import still other files. For example, if one class declares a statically typed instance variable of another class, and their two interface files import each other, neither class may compile correctly.
+
+### Header Prefix
+
+Adding frameworks that are used in the majority of a project to a header prefix is preferred. If these frameworks are in the header prefix, they should **never** be imported in source files in the project.
+
+For example, if a header prefix looks like the following:
+
+```objective-c
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
+```
+
+`#import <Foundation/Foundation.h>` should never occur in the project outside of the header prefix.
+
 ## init and dealloc
 
 `dealloc` methods should be placed at the top of the implementation, 
@@ -266,6 +353,15 @@ NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex",
 NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];
 NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
+```
+
+## Extern, Const, and Static
+
+```objective-c
+extern NSString *const kMyConstant;
+extern NSString *MyExternString;
+static NSString *const kMyStaticConstant;
+static NSString *staticString;
 ```
 
 ## CGRect
@@ -319,6 +415,8 @@ CGFloat height = frame.size.height;
 ## Constants
 
 Constants are preferred over in-line string literals or numbers, as they allow for easy reproduction of commonly used variables and can be quickly changed without the need for find and replace. Constants should be declared as `static` constants and not `#define`s unless explicitly being used as a macro.
+
+If you find yourself writing `#define` stop and ask yourself, is this really the best way to do this… most often there is.
 
 **For example:**
 
@@ -472,4 +570,4 @@ This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.
 
 # References
 
-Many of the Objective-C guides are from the [New York Times: Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide), much of the text is straight up copied because they did such a great job with it!
+Many of the Objective-C guides are from the [New York Times: Objective-C Style Guide](https://github.com/NYTimes/objective-c-style-guide) & [Sam Soffes: Objective-C Coding Convention and Best Practices](https://gist.github.com/soffes/812796), much of the text is straight up copied because they did such a great job with it!
