@@ -73,6 +73,40 @@ result = a > b ? x : y;
 result = a > b ? x = c > d ? c : d : y;
 ```
 
+## Comments
+
+Comments should be used sparingly due to the self documenting nature of Objective-C.
+Comments should be used to explain **why** a particular piece of code does something. 
+Any comments that are used must be kept up-to-date or deleted.
+
+There should always be a space after the `//`.
+**For example:**
+```objc
+// This is where we do the thing
+```
+
+Block comments should generally be avoided, as code should be as self-documenting as possible, 
+with only the need for intermittent, few-line explanations. 
+This does not apply to comments that are used to generate documentation.
+
+### TODO
+
+The `// TODO:` comment is encuraged to make notes of what is needed to be done. 
+As soon as a todo is complete the comment should be deleted.
+
+**For example:**
+```objc
+// TODO: Still have to add threading
+```
+
+### HACK
+
+The `// HACK:` comment should be used to flag a particually hacky peice of code that is working but should probaly be fixed in the future.
+
+**For example:**
+```objc
+// HACK: Not sure why 5px needs to be added here but it's working
+```
 
 # Objective-C
 
@@ -176,4 +210,107 @@ This is the same format as Xcode's default synthesis.
 
 ```objc
 @synthesize descriptiveVariableName = _descriptiveVariableName;
+```
+
+### Underscores
+
+When using properties, instance variables should always be accessed and mutated using `self.`. 
+This means that all properties will be visually distinct, as they will all be prefaced with `self.`. 
+Local variables should not contain underscores.
+
+## init and dealloc
+
+`dealloc` methods should be placed at the top of the implementation, 
+directly after the `@synthesize` and `@dynamic` statements. 
+`init` should be placed directly below the `dealloc` methods of any class.
+
+`instancetype` should always be used for `init` and class methods that return the initialized object.
+
+`init` methods should be structured like this:
+
+```objc
+- (instancetype)init{
+    self = [super init];
+    if(self){
+        // Custom initialization
+    }
+    return self;
+}
+```
+
+Helper class methods are prefered for creating custom object.
+
+**For example:**
+
+```objc
++ (instancetype)photoViewControllerWithPhoto:(SMEPhoto *)photo andDelegate:(id<SMEPhotoViewControllerDelegate>)delegate;
+```
+
+## Literals
+
+`NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
+
+**For example:**
+
+```objc
+NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
+NSDictionary *productManagers = @{@"iPhone": @"Kate", @"iPad": @"Kamal", @"Mobile Web": @"Bill"};
+NSNumber *shouldUseLiterals = @YES;
+NSNumber *buildingZIPCode = @10018;
+```
+
+**Not:**
+
+```objc
+NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];
+NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];
+NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
+NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
+```
+
+## CGRect Functions
+
+When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
+
+> All functions described in this reference that take CGRect data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the CGRect data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.
+
+**For example:**
+
+```objc
+CGRect frame = self.view.frame;
+
+CGFloat x = CGRectGetMinX(frame);
+CGFloat y = CGRectGetMinY(frame);
+CGFloat width = CGRectGetWidth(frame);
+CGFloat height = CGRectGetHeight(frame);
+```
+
+**Not:**
+
+```objc
+CGRect frame = self.view.frame;
+
+CGFloat x = frame.origin.x;
+CGFloat y = frame.origin.y;
+CGFloat width = frame.size.width;
+CGFloat height = frame.size.height;
+
+## Constants
+
+Constants are preferred over in-line string literals or numbers, as they allow for easy reproduction of commonly used variables and can be quickly changed without the need for find and replace. Constants should be declared as `static` constants and not `#define`s unless explicitly being used as a macro.
+
+**For example:**
+
+```objc
+static NSString *const SMEAboutViewControllerCompanyName = @"1kLabs, Inc.";
+
+static const CGFloat SMEImageThumbnailHeight = 50.0;
+```
+
+**Not:**
+
+```objc
+#define CompanyName @"1kLabs, Inc."
+
+#define thumbnailHeight 2
 ```
