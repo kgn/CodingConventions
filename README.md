@@ -59,6 +59,20 @@ or
 if (!error) return success;
 ```
 
+### Ternary Operator
+
+The Ternary operator, ? , should only be used when it increases clarity or code neatness. A single condition is usually all that should be evaluated. Evaluating multiple conditions is usually more understandable as an if statement, or refactored into instance variables.
+
+**For example:**
+```objc
+result = a > b ? x : y;
+```
+
+**Not:**
+```objc
+result = a > b ? x = c > d ? c : d : y;
+```
+
 
 # Objective-C
 
