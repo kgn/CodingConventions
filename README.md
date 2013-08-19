@@ -36,6 +36,30 @@ if(user.isHappy){
 }
 ```
 
+## Conditionals
+
+Conditional bodies should always use braces even when a conditional body could be written without braces (e.g., it is one line only) to prevent [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). These errors include adding a second line and expecting it to be part of the if-statement. Another, [even more dangerous defect](http://programmers.stackexchange.com/a/16530) may happen where the line "inside" the if-statement is commented out, and the next line unwittingly becomes part of the if-statement. In addition, this style is more consistent with all other conditionals, and therefore more easily scannable.
+
+**For example:**
+```objc
+if (!error) {
+    return success;
+}
+```
+
+**Not:**
+```objc
+if (!error)
+    return success;
+```
+
+or
+
+```objc
+if (!error) return success;
+```
+
+
 # Objective-C
 
 ## Dot Notation
@@ -45,9 +69,9 @@ Avoid mixing square brackets and dots.
 **For example:**
 ```objc
 [[UIApplication sharedApplication] delegate];
-
-// or
-
+```
+or
+```
 UIApplication *app = [UIApplication sharedApplication];
 app.delegate;
 ```
@@ -55,8 +79,8 @@ app.delegate;
 **Not:**
 ```objc
 [UIApplication sharedApplication].delegate;
-
-// or
-
+```
+or
+```
 UIApplication.sharedApplication.delegate;
 ```
