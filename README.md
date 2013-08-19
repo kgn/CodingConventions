@@ -294,6 +294,7 @@ CGFloat x = frame.origin.x;
 CGFloat y = frame.origin.y;
 CGFloat width = frame.size.width;
 CGFloat height = frame.size.height;
+```
 
 ## Constants
 
@@ -313,4 +314,21 @@ static const CGFloat SMEImageThumbnailHeight = 50.0;
 #define CompanyName @"1kLabs, Inc."
 
 #define thumbnailHeight 2
+```
+
+## Enumerated Types
+
+When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. 
+The SDK now includes a macro to facilitate and encourage use of fixed underlying types — `NS_ENUM()`
+
+`enum` names should be prefixed with the base name followed by the specific name.
+
+**Example:**
+
+```objc
+typedef NS_ENUM(NSInteger, SMEPhotoType){
+    SMEPhotoTypeWho,
+    SMEPhotoTypeWhat,
+    SMEPhotoTypeWhere
+};
 ```
