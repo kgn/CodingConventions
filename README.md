@@ -268,7 +268,27 @@ NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:10018];
 ```
 
-## CGRect Functions
+## CGRect
+
+### Make
+
+Creating a `CGRect` often results in a very long line of code. For this reason it is prefered to manipulate a rectangle over multiple lines rather than on long `CGRectMake` line.
+
+**For example:**
+```objc
+CGRect frame = CGRectZero;
+frame.size = image.size;
+frame.origin.y = CGRectGetMaxY(label.frame);
+frame.origin.x = round(CGRectGetMidX(self.view.bounds)-CGrectGetMidX(frame));
+```
+
+**Not:**
+
+```objc
+CGRect frame = CGRectMake(round(CGRectGetMidX(self.view.bounds)-image.size.width/2), CGRectGetMaxY(label.frame), image.size.width, image.size.height);
+```
+
+### Functions
 
 When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the [`CGGeometry` functions](http://developer.apple.com/library/ios/#documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html) instead of direct struct member access. From Apple's `CGGeometry` reference:
 
