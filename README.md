@@ -4,13 +4,15 @@ Lesser items like class properties and variables are in [camelCase](http://msdn.
 
 The Sesame namespace is `SME`, used for all Cocoa, Pytnon, and JavaScript/CoffeeScript global objects.
 
-# Git Repos
+# Git
+
+## Repos
 
 Get repositories are Pascal Case and namespaced with *Sesame*.
 
 Examples *SesameCocoa*, *SesameWebsite*.
 
-# Git Branches
+## Branches
 
 Git branches are grouped together by the `/` seperator so they are organized into *directories* in GUI apps.
 
