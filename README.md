@@ -25,6 +25,7 @@ There are currently two groups:
 # C Based Syntex Languages
 
 Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
+There should be no space around the braces to make the code more compact.
 
 **For example:**
 ```objc
