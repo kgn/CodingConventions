@@ -35,3 +35,28 @@ if(user.isHappy){
     //Do something else
 }
 ```
+
+# Objective-C
+
+## Dot Notation
+
+Avoid mixing square brackets and dots.
+
+**For example:**
+```objc
+[[UIApplication sharedApplication] delegate];
+
+// or
+
+UIApplication *app = [UIApplication sharedApplication];
+app.delegate;
+```
+
+**Not:**
+```objc
+[UIApplication sharedApplication].delegate;
+
+// or
+
+UIApplication.sharedApplication.delegate;
+```
