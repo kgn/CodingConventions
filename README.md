@@ -42,7 +42,7 @@ Conditional bodies should always use braces even when a conditional body could b
 
 **For example:**
 ```objc
-if (!error) {
+if(!error){
     return success;
 }
 ```
