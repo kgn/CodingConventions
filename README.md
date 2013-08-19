@@ -1,19 +1,19 @@
-Main items like repo names, folders, and classes are in [Pascal Case](http://c2.com/cgi/wiki?PascalCase).
+Main items like repo names, folders, and classes are in [PascalCase](http://c2.com/cgi/wiki?PascalCase).
 
-Lesser items like class properties and variables are in [Camel Case](http://msdn.microsoft.com/en-us/library/x2dbyw72.aspx).
+Lesser items like class properties and variables are in [camelCase](http://msdn.microsoft.com/en-us/library/x2dbyw72.aspx).
 
-The Sesame namespace is `SME`. This should be used for all Cocoa, Pytnon, and JavaScript/CoffeeScript global objects.
+The Sesame namespace is `SME`, used for all Cocoa, Pytnon, and JavaScript/CoffeeScript global objects.
 
 # Git Repos
 
-Get repositories are Pascal Case and name-spaced with *Sesame*. 
+Get repositories are Pascal Case and namespaced with *Sesame*.
 
 Examples *SesameCocoa*, *SesameWebsite*.
 
-# Get Branches
+# Git Branches
 
-Github branches are Pascal Case and use `/` so that branches are organized into *directories* in GUI apps.
+Git branches are grouped together by the `/` seperator so they are organized into *directories* in GUI apps.
 
-Namespaces:
-- Feature - A feature branch. Examples: `Feature/SoundControl`, `Feature/XRay`
-- Build - A build branch for the build system. Examples: `Build/Release`, `Build/Beta`.
+There are currently two groups:
+- `feature` - A feature branch. Examples: `feature/sound-control`, `feature/x-ray`
+- `build` - A build branch for the build system. Examples: `build/release`, `build/beta`.
