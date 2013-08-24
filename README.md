@@ -32,7 +32,7 @@ Python naming conventions follow what's outlined above. Pascal-case for modules 
 
 Single quotes should be used, unless there are single quotes in the string then double quotes maybe used. Avoid escaping quotes.
 
-**For example: **
+**For example:**
 
 ```python
 whereTitle = 'Know where this is?'
@@ -52,13 +52,13 @@ class SMEPhoto(object):
         self.objectId = objectId
 ```
 
-** Package Structure
+## Package Structure
 
-Modules should use `__all__` to expose a clean public API. 
+Modules should use `__all__` to expose a clean public API for the module. 
 `__init__.py` should not contain code but should only perform imports from other 
 modules to create a clean API for the package.
 
-**For Example:**
+** For Example: **
 
 ```python
 __all__ = ('SMEPhoto', 'SMEUser')
