@@ -24,6 +24,51 @@ There are currently two groups:
 - `feature` - A feature branch. Examples: `feature/sound-control`, `feature/x-ray`
 - `build` - A build branch for the build system. Examples: `build/release`, `build/beta`.
 
+# Python
+
+Python naming conventions follow what's outlined above. Pascal-case for modules and classes, and camel-case for variable names.
+
+## Quotes
+
+Single quotes should be used, unless there are single quotes in the string then double quotes maybe used. Avoid escaping quotes.
+
+**For example: **
+
+```python
+whereTitle = 'Know where this is?'
+whosTitle "Know who's in this photo?"
+```
+
+## Classes
+
+Classes should begin with the three letter `SME` namespace.
+Classes should always inherit from `object`.
+
+**For example: **
+
+```python
+class SMEPhoto(object):
+    def __init__(self, objectId):
+        self.objectId = objectId
+```
+
+** Package Structure
+
+Modules should use `__all__` to expose a clean public API. 
+`__init__.py` should not contain code but should only perform imports from other 
+modules to create a clean API for the package.
+
+**For Example:**
+
+```python
+__all__ = ('SMEPhoto', 'SMEUser')
+```
+
+```python
+from Photo import SMEPhoto
+from Server import *
+```
+
 # C Based Syntax Languages
 
 ## Spacing
