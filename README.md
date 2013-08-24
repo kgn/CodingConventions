@@ -44,7 +44,7 @@ whosTitle "Know who's in this photo?"
 Classes should begin with the three letter `SME` namespace.
 Classes should always inherit from `object`.
 
-**For example: **
+**For example:**
 
 ```python
 class SMEPhoto(object):
@@ -58,12 +58,14 @@ Modules should use `__all__` to expose a clean public API for the module.
 `__init__.py` should not contain code but should only perform imports from other 
 modules to create a clean API for the package.
 
-** For Example: **
+**For example:**
 
+`Object.py`
 ```python
 __all__ = ('SMEPhoto', 'SMEUser')
 ```
 
+`__init__.py`
 ```python
 from Photo import SMEPhoto
 from Server import *
