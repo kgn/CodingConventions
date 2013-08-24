@@ -275,6 +275,16 @@ This is the same format as Xcode's default synthesis.
 @synthesize descriptiveVariableName = _descriptiveVariableName;
 ```
 
+UIControl properties should begin with a descriptive name and end with the name of the control.
+
+**For example:**
+
+```objc
+@property (weak, nonatomic) UIView *profileView;
+@property (weak, nonatomic) UILabel *usernameLabel;
+@property (weak, nonatomic) UIImageView *photoImageView;
+```
+
 ### Underscores
 
 When using properties, instance variables should always be accessed and mutated using `self.`. 
