@@ -6,6 +6,8 @@ The Sesame namespace is `SME`, used for all Cocoa, Python, and JavaScript/Coffee
 
 It's very easy in code to be overly clever, don't be. Make the code readable and understandable by others and your future self. This includes things like separating complex code into multiple lines with comments, and clear variable names, even if they get really long. Take 5 extra seconds now when writing the code to avoid loosing 5 minutes later when reading it.
 
+This is a living document so please make suggestions and refer back to it for changes.
+
 # Git
 
 ## Repos
