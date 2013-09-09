@@ -424,6 +424,11 @@ static NSString *const kMyStaticConstant;
 static NSString *staticString;
 ```
 
+## Auto Layout
+
+Auto layout should be used for all views. Use [Richard Turton's `UIView+AutoLayout`](https://github.com/jrturton/UIView-Autolayout) to define the constraints.
+More information can be found out about these category methods and auto layout in [this blog post](http://commandshift.co.uk/blog/2013/02/20/creating-individual-layout-constraints/).
+
 ## CGRect
 
 ### Make
