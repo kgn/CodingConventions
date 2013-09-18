@@ -2,7 +2,7 @@ Main items like repo names, folders, and classes are in [PascalCase](http://c2.c
 
 Lesser items like class properties and variables are in [camelCase](http://msdn.microsoft.com/en-us/library/x2dbyw72.aspx).
 
-The Sesame namespace is `SME`, used for all Cocoa, Python, and JavaScript/CoffeeScript global objects.
+The Sesame namespace is `OKL`, used for all Cocoa, Python, and JavaScript/CoffeeScript global objects.
 
 It's very easy in code to be overly clever, don't be. Make the code readable and understandable by others and your future self. This includes things like separating complex code into multiple lines with comments, and clear variable names, even if they get really long. Take 5 extra seconds now when writing the code to avoid loosing 5 minutes later when reading it.
 
@@ -41,13 +41,13 @@ whosTitle "Know who's in this photo?"
 
 ## Classes
 
-Classes should begin with the three letter `SME` namespace.
+Classes should begin with the three letter `OKL` namespace.
 Classes should always inherit from `object`.
 
 **For example:**
 
 ```python
-class SMEPhoto(object):
+class OKLPhoto(object):
     def __init__(self, objectId):
         self.objectId = objectId
 ```
@@ -62,12 +62,12 @@ modules to create a clean API for the package.
 
 `Object.py`
 ```python
-__all__ = ('SMEPhoto', 'SMEUser')
+__all__ = ('OKLPhoto', 'OKLUser')
 ```
 
 `__init__.py`
 ```python
-from Photo import SMEPhoto
+from Photo import OKLPhoto
 from Server import *
 ```
 
@@ -224,7 +224,7 @@ Property definitions should be used in place of naked instance variables wheneve
 **For example:**
 
 ```objc
-@interface SMEUser: NSObject
+@interface OKLUser: NSObject
 
 @property (strong, nonatomic) NSString *name;
 
@@ -234,7 +234,7 @@ Property definitions should be used in place of naked instance variables wheneve
 **Not:**
 
 ```objc
-@interface SMEUser : NSObject {
+@interface OKLUser : NSObject {
     NSString *name;
 }
 ```
@@ -298,13 +298,13 @@ UIButton *settingsButton;
 UIButton *setBut;
 ```
 
-A three letter prefix (e.g. `SME`) should always be used for class names and constants. 
+A three letter prefix (e.g. `OKL`) should always be used for class names and constants. 
 Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity.
 
 **For example:**
 
 ```objc
-static const NSTimeInterval SMEPhotoViewControllerFadeAnimationDuration = 0.3;
+static const NSTimeInterval OKLPhotoViewControllerFadeAnimationDuration = 0.3;
 ```
 
 **Not:**
@@ -388,7 +388,7 @@ Helper class methods are preferred for creating custom object.
 **For example:**
 
 ```objc
-+ (instancetype)photoViewControllerWithPhoto:(SMEPhoto *)photo andDelegate:(id<SMEPhotoViewControllerDelegate>)delegate;
++ (instancetype)photoViewControllerWithPhoto:(OKLPhoto *)photo andDelegate:(id<OKLPhotoViewControllerDelegate>)delegate;
 ```
 
 ## Literals
@@ -486,9 +486,9 @@ If you find yourself writing `#define` stop and ask yourself, is this really the
 **For example:**
 
 ```objc
-static NSString *const SMEAboutViewControllerCompanyName = @"1kLabs, Inc.";
+static NSString *const OKLAboutViewControllerCompanyName = @"1kLabs, Inc.";
 
-static const CGFloat SMEImageThumbnailHeight = 50.0;
+static const CGFloat OKLImageThumbnailHeight = 50.0;
 ```
 
 **Not:**
@@ -509,26 +509,26 @@ The SDK now includes a macro to facilitate and encourage use of fixed underlying
 **Example:**
 
 ```objc
-typedef NS_ENUM(NSInteger, SMEPhotoType){
-    SMEPhotoTypeWho,
-    SMEPhotoTypeWhat,
-    SMEPhotoTypeWhere
+typedef NS_ENUM(NSInteger, OKLPhotoType){
+    OKLPhotoTypeWho,
+    OKLPhotoTypeWhat,
+    OKLPhotoTypeWhere
 };
 ```
 
 ## Private Properties
 
-Private properties should be declared in class extensions (anonymous categories) in a separate header file for the class: `SMEPhoto+Private.h`. 
+Private properties should be declared in class extensions (anonymous categories) in a separate header file for the class: `OKLPhoto+Private.h`. 
 This way other classes in the API can use the private properties and methods but the interface will be clean to the end user of the API.
-Named categories (such as `SMEPrivate` or `private`) should never be used unless extending another class.
+Named categories (such as `OKLPrivate` or `private`) should never be used unless extending another class.
 
 **For example:**
 
 ```objc
-@interface SMEPhoto()
+@interface OKLPhoto()
 
-@property (strong, nonatomic) SMEUser *user;
-@property (nonatomic) SMEPhotoType photoType;
+@property (strong, nonatomic) OKLUser *user;
+@property (nonatomic) OKLPhotoType photoType;
 @property (nonatomic) NSInteger guessCount;
 
 @end
